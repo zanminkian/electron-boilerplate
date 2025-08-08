@@ -1,0 +1,15 @@
+{
+  "name": "electron-boilerplate",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/main/main.ts",
+  "scripts": {
+    "build": "electron-packager . --out=out",
+    "dev": "DISPLAY=:1 electron . --no-sandbox"
+  },
+  "devDependencies": {
+    "@electron/packager": "18.4.0",
+    "electron": "38.0.0-beta.1"
+  }
+}
