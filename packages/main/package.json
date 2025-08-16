@@ -1,0 +1,18 @@
+{
+  "name": "electron-boilerplate",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/main.ts",
+  "scripts": {
+    "build": "tsc --noEmit && electron-builder build --linux dir --mac dir",
+    "dev": "DISPLAY=:1 NODE_ENV=development electron . --no-sandbox"
+  },
+  "dependencies": {
+    "renderer": "workspace:*"
+  },
+  "devDependencies": {
+    "electron": "37.3.1",
+    "electron-builder": "26.0.12"
+  }
+}

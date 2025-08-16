@@ -1,15 +1,24 @@
 {
-  "name": "electron-boilerplate",
-  "version": "0.0.0",
   "private": true,
   "type": "module",
-  "main": "./src/main/main.ts",
   "scripts": {
-    "build": "electron-packager . --out=out",
-    "dev": "DISPLAY=:1 electron . --no-sandbox"
+    "build": "pnpm -r build",
+    "prepare": "fenge install",
+    "style": "fenge",
+    "style:update": "fenge -u"
   },
   "devDependencies": {
-    "@electron/packager": "18.4.0",
-    "electron": "38.0.0-beta.1"
+    "fenge": "0.10.1",
+    "typescript": "5.9.2"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "~22.18.0"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "version": "10.14.0"
+    }
   }
 }
