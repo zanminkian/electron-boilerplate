@@ -11,10 +11,7 @@ pnpm install
 ## Dev
 
 ```sh
-# Start renderer first
-pnpm --filter renderer dev
-# Then open another terminal to start main
-pnpm --filter electron-boilerplate dev
+pnpm dev
 ```
 
 ## Build

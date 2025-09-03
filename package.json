@@ -3,12 +3,14 @@
   "type": "module",
   "scripts": {
     "build": "pnpm -r build",
+    "dev": "run-pty % pnpm --filter renderer dev % pnpm --filter electron-boilerplate dev",
     "prepare": "fenge install",
     "style": "fenge",
     "style:update": "fenge -u"
   },
   "devDependencies": {
     "fenge": "0.10.2",
+    "run-pty": "5.0.0",
     "typescript": "5.9.2"
   },
   "devEngines": {
