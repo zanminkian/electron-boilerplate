@@ -1,7 +1,5 @@
 # electron-boilerplate
 
-> WIP
-
 ## Install
 
 ```sh
