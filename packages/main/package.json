@@ -5,8 +5,9 @@
   "type": "module",
   "main": "./src/main.ts",
   "scripts": {
-    "build": "tsc --noEmit && electron-builder build --linux dir --mac dir",
-    "dev": "DISPLAY=:1 NODE_ENV=development electronmon . --no-sandbox"
+    "build": "electron-builder build --linux dir --mac dir",
+    "dev": "DISPLAY=:1 NODE_ENV=development electronmon . --no-sandbox",
+    "test": "tsc --noEmit"
   },
   "dependencies": {
     "renderer": "workspace:*"
