@@ -36,6 +36,7 @@ function createWindow() {
   ).catch((err: unknown) => {
     dialog.showErrorBox(
       "Application Error",
+      // eslint-disable-next-line @typescript-eslint/no-deprecated -- wait for electron upgrade the `@types/node`
       isNativeError(err) ? err.message : "Unknown error occurred.",
     );
   });

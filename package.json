@@ -10,8 +10,8 @@
     "test": "pnpm -r test"
   },
   "devDependencies": {
-    "fenge": "0.12.8",
-    "run-pty": "6.0.0",
+    "fenge": "0.12.11",
+    "run-pty": "6.0.2",
     "typescript": "5.9.3"
   },
   "devEngines": {

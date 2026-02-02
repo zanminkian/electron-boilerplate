@@ -13,8 +13,8 @@
     "renderer": "workspace:*"
   },
   "devDependencies": {
-    "electron": "40.0.0",
-    "electron-builder": "26.4.0",
+    "electron": "40.1.0",
+    "electron-builder": "26.7.0",
     "electronmon": "2.0.4"
   }
 }
