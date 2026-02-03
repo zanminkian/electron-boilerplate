@@ -1,53 +1,88 @@
 import { useEffect, useState } from "react";
 
 export function App() {
-  const [num, setNum] = useState(0);
-  return (
-    <div className="border border-solid border-black bg-red-100 p-1 text-center text-base hover:bg-green-100">
-      <div>💖 Hello World 你好：{num}</div>
-      <button className="d-btn border-black" onClick={() => setNum(num + 1)}>
-        Click me
-      </button>
-      <Info />
-    </div>
-  );
-}
-
-function Info() {
-  const [text, setText] = useState<Map<string, string>>();
+  const [clipboardText, setClipboardText] = useState("");
   const invoke = (globalThis as any).invoke as (
     channel: string,
     ...args: any[]
   ) => Promise<any>;
+
+  const loadClipboard = async () => {
+    try {
+      const text = await invoke("getClipboardText");
+      setClipboardText(text);
+      adjustWindowSize(text);
+    } catch {
+      setClipboardText("无法读取剪贴板内容");
+    }
+  };
+
+  const adjustWindowSize = (text: string) => {
+    const textLength = text.length;
+    const lineCount = text.split("\n").length;
+
+    // 根据文本长度和行数计算窗口大小
+    let width = 300;
+    let height = 200;
+
+    if (textLength > 0) {
+      // 根据字符数计算宽度（每行平均字符数）
+      const avgCharsPerLine = textLength / lineCount;
+      width = Math.min(
+        800,
+        Math.max(300, Math.ceil(avgCharsPerLine * 8) + 100),
+      );
+
+      // 根据行数计算高度
+      height = Math.min(600, Math.max(200, lineCount * 24 + 120));
+    }
+
+    invoke("resizeWindow", width, height);
+  };
+
   useEffect(() => {
-    const channels = [
-      "processVersion",
-      "processCwd",
-      "processArgv",
-      "importMetaFilename",
-    ];
-    Promise.all(
-      channels.map(
-        async (channel) => [channel, await invoke(channel)] as const,
-      ),
-    )
-      .then((result) => {
-        setText(new Map(result));
-      })
-      .catch(() => {
-        globalThis.alert("Failed to get info");
+    loadClipboard();
+
+    const ipcRenderer = (globalThis as any).ipcRenderer;
+    if (ipcRenderer) {
+      ipcRenderer.on("refresh-clipboard", () => {
+        loadClipboard();
       });
-  });
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        invoke("hideWindow");
+      }
+    };
+
+    globalThis.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      if (ipcRenderer) {
+        ipcRenderer.removeAllListeners("refresh-clipboard");
+      }
+      globalThis.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
-    <div className="mx-auto my-2 max-w-200 border border-red-500">
-      <ul className="text-left text-sm">
-        {text &&
-          [...text.entries()].map(([method, value]) => (
-            <li key={method}>
-              {method}: {value}
-            </li>
-          ))}
-      </ul>
+    <div className="flex h-screen w-full flex-col bg-white p-4">
+      <div
+        className="mb-4 text-center"
+        style={{ WebkitAppRegion: "drag" } as any}
+      >
+        <h1 className="text-xl font-bold text-gray-800">📋 剪贴板内容</h1>
+        <p className="mt-1 text-sm text-gray-500">按 Shift+Ctrl+A 隐藏窗口</p>
+      </div>
+      <div
+        className="flex-1 overflow-auto rounded-lg border border-gray-300 bg-gray-50 p-4"
+        style={{ WebkitAppRegion: "no-drag" } as any}
+      >
+        <pre className="text-sm break-words whitespace-pre-wrap text-gray-800">
+          {clipboardText || "剪贴板为空"}
+        </pre>
+      </div>
     </div>
   );
 }
