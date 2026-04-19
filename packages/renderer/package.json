@@ -10,16 +10,17 @@
     "test": "tsc --noEmit"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "4.1.18",
-    "@types/react": "19.2.10",
+    "@tailwindcss/vite": "4.2.2",
+    "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "@types/web": "0.0.325",
-    "@vitejs/plugin-react": "5.1.2",
-    "daisyui": "5.5.16",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "tailwindcss": "4.1.18",
+    "@types/web": "0.0.346",
+    "@vitejs/plugin-react": "5.2.0",
+    "babel-plugin-react-compiler": "1.0.0",
+    "daisyui": "5.5.19",
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "tailwindcss": "4.2.2",
     "typescript": "5.9.3",
-    "vite": "7.3.1"
+    "vite": "8.0.8"
   }
 }
