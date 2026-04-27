@@ -7,10 +7,11 @@
     "prepare": "fenge install",
     "style": "fenge",
     "style:update": "fenge -u",
-    "test": "pnpm -r test"
+    "test": "pnpm style && pnpm typecheck && pnpm -r test",
+    "typecheck": "pnpm -r exec tsc --noEmit"
   },
   "devDependencies": {
-    "fenge": "0.13.2",
+    "fenge": "0.13.3",
     "run-pty": "6.0.2",
     "typescript": "6.0.3"
   },

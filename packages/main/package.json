@@ -6,14 +6,13 @@
   "main": "./src/main.ts",
   "scripts": {
     "build": "electron-builder build --linux dir --mac dir",
-    "dev": "DISPLAY=:1 NODE_ENV=development electronmon . --no-sandbox",
-    "test": "tsc --noEmit"
+    "dev": "DISPLAY=:1 NODE_ENV=development electronmon . --no-sandbox"
   },
   "dependencies": {
     "renderer": "workspace:*"
   },
   "devDependencies": {
-    "electron": "41.2.1",
+    "electron": "41.3.0",
     "electron-builder": "26.8.1",
     "electronmon": "2.0.4"
   }

@@ -6,8 +6,7 @@
   "exports": "./dist/index.html",
   "scripts": {
     "build": "vite build",
-    "dev": "vite --strictPort",
-    "test": "tsc --noEmit"
+    "dev": "vite --strictPort"
   },
   "devDependencies": {
     "@rolldown/plugin-babel": "0.2.3",
@@ -22,6 +21,6 @@
     "react-dom": "19.2.5",
     "tailwindcss": "4.2.2",
     "typescript": "6.0.3",
-    "vite": "8.0.9"
+    "vite": "8.0.10"
   }
 }
