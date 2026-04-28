@@ -31,7 +31,20 @@ function createWindow() {
   });
 
   (process.env["NODE_ENV"] === "development"
-    ? mainWindow.loadURL("http://localhost:5173")
+    ? mainWindow
+        .loadURL("http://localhost:5173")
+        .catch(async (err: unknown) => {
+          await dialog.showMessageBox(mainWindow, {
+            type: "error",
+            title: "Dev Server Unavailable",
+            // eslint-disable-next-line @typescript-eslint/no-deprecated -- wait for electron upgrade the `@types/node`
+            message: isNativeError(err)
+              ? err.message
+              : "Unknown error occurred.",
+            buttons: ["Retry"],
+          });
+          await mainWindow.loadURL("http://localhost:5173");
+        })
     : mainWindow.loadFile(fileURLToPath(import.meta.resolve("renderer")))
   ).catch((err: unknown) => {
     dialog.showErrorBox(
