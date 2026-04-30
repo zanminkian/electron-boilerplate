@@ -11,7 +11,7 @@
     "typecheck": "pnpm -r exec tsc --noEmit"
   },
   "devDependencies": {
-    "fenge": "0.13.3",
+    "fenge": "0.13.4",
     "run-pty": "6.0.2",
     "typescript": "6.0.3"
   },
