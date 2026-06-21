@@ -33,6 +33,6 @@ Clone this repository and then replace `<your-project-name>` in the following st
 2. Update the `name` field in `packages/<your-project-name>/package.json` to `<your-project-name>`.
 3. Update the `dev` script in root `package.json` to use `<your-project-name>` as the pnpm filter:
    ```diff
-   - "dev": "run-pty % pnpm --filter renderer dev % pnpm --filter main dev",
-   + "dev": "run-pty % pnpm --filter renderer dev % pnpm --filter <your-project-name> dev",
+   - "dev": "concurrently -k -n renderer,main \"pnpm --filter renderer dev\" \"pnpm --filter main dev\"",
+   + "dev": "concurrently -k -n renderer,<your-project-name> \"pnpm --filter renderer dev\" \"pnpm --filter <your-project-name> dev\"",
    ```

@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "build": "pnpm -r build",
-    "dev": "run-pty % pnpm --filter renderer dev % pnpm --filter main dev",
+    "dev": "concurrently -k -n renderer,main \"pnpm --filter renderer dev\" \"pnpm --filter main dev\"",
     "prepare": "fenge install",
     "style": "fenge",
     "style:update": "fenge -u",
@@ -11,8 +11,8 @@
     "typecheck": "pnpm -r exec tsc --noEmit"
   },
   "devDependencies": {
-    "fenge": "0.14.1",
-    "run-pty": "6.0.2",
+    "concurrently": "10.0.3",
+    "fenge": "0.14.5",
     "typescript": "6.0.3"
   },
   "devEngines": {
